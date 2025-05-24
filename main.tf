@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "vnet-block" {
 
 resource "azurerm_subnet" "subnet-block" {
   name                 = "subnet1-${var.name}"
-  resource_group_name  = var.location
+  resource_group_name  = var.name
   virtual_network_name = azurerm_virtual_network.vnet-block.name
   address_prefixes     = var.address_prefixes
 }
@@ -64,13 +64,13 @@ resource "azurerm_network_interface_security_group_association" "NIC-NSG-Associa
 
 resource "azurerm_linux_virtual_machine" "linux-vm-block" {
   count                           = var.VM_type == "Linux" ? 1 : 0
-  name                            = "${var.name}_vm${count.index + 1}"
+  name                            = "${var.name}${count.index + 1}"
   resource_group_name             = azurerm_resource_group.rg_block.name
   location                        = azurerm_resource_group.rg_block.location
   size                            = "Standard_F2"
   admin_username                  = "Bholenath"
   admin_password                  = "Bholenath@123"
-  disable_password_authentication = true
+  disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.nic-block.id]
 
   os_disk {
@@ -89,7 +89,7 @@ resource "azurerm_linux_virtual_machine" "linux-vm-block" {
 
 resource "azurerm_windows_virtual_machine" "windows-vm-block" {
   count                 = var.VM_type == "Windows" ? 1 : 0
-  name                  = "${var.name}_vm${count.index + 1}"
+  name                  = "${var.name}${count.index + 1}"
   resource_group_name   = azurerm_resource_group.rg_block.name
   location              = azurerm_resource_group.rg_block.location
   size                  = "Standard_F2"
