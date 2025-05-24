@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "vnet-block" {
 
 resource "azurerm_subnet" "subnet-block" {
   name                 = "subnet1-${var.name}"
-  resource_group_name  = var.name
+  resource_group_name  = azurerm_resource_group.rg_block.name
   virtual_network_name = azurerm_virtual_network.vnet-block.name
   address_prefixes     = var.address_prefixes
 }
@@ -51,14 +51,14 @@ resource "azurerm_network_security_group" "NSG-block" {
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = var.VM_type == "Linux" ? 22 : 3389
+    destination_port_range     = var.VM_type == "Linux" ? "22" : "3389"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 }
 
 resource "azurerm_network_interface_security_group_association" "NIC-NSG-Association" {
-  network_interface_id = azurerm_network_interface.nic-block.id
+  network_interface_id      = azurerm_network_interface.nic-block.id
   network_security_group_id = azurerm_network_security_group.NSG-block.id
 }
 
@@ -85,6 +85,21 @@ resource "azurerm_linux_virtual_machine" "linux-vm-block" {
     version   = "latest"
   }
 
+  provisioner "remote-exec" {
+
+
+    inline = [
+      "sudo apt update",
+      "sudo apt install nginx -y"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "Bholenath"
+      password = "Bholenath@123"
+      host     = var.enable_public_ip == "Yes" ? azurerm_public_ip.public-ip-block[0].ip_address : null
+    }
+
+  }
 }
 
 resource "azurerm_windows_virtual_machine" "windows-vm-block" {
@@ -109,4 +124,16 @@ resource "azurerm_windows_virtual_machine" "windows-vm-block" {
     version   = "latest"
   }
 
+  provisioner "local-exec" {
+    command = "echo ${self.name} created!"
+  }
+
 }
+
+
+output "public_ip" {
+  value       = var.enable_public_ip == "Yes" ? azurerm_public_ip.public-ip-block[0].ip_address : "No Public IP"
+  description = "Public IP of the VM"
+}
+
+
