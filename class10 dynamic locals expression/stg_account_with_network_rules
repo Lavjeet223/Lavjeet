@@ -1,0 +1,47 @@
+# variable "app-code" {}
+locals {
+  name     = "lavjeet"
+  location = "southindia"
+}
+
+
+resource "azurerm_resource_group" "rg-block" {
+  name     = local.name
+  location = local.location
+}
+
+resource "azurerm_virtual_network" "vnet-block" {
+  name                = "vnet-${local.name}"
+  address_space       = ["10.0.0.0/16"]
+  location            = local.location
+  resource_group_name = azurerm_resource_group.rg-block.name
+
+}
+
+resource "azurerm_subnet" "subnet-block" {
+  name                 = "subnet-${local.name}"
+  resource_group_name  = local.name
+  virtual_network_name = azurerm_virtual_network.vnet-block.name
+  address_prefixes     = ["10.0.2.0/24"]
+  service_endpoints    = ["Microsoft.Storage"]
+}
+
+resource "azurerm_storage_account" "stg-block" {
+  name                     = "stgacount${local.name}"
+  resource_group_name      = azurerm_resource_group.rg-block.name
+  location                 = azurerm_resource_group.rg-block.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  network_rules {
+    default_action             = "Deny"
+    ip_rules                   = ["10.0.2.0"]
+    virtual_network_subnet_ids = [azurerm_subnet.subnet-block.id]
+  }
+
+  tags = {
+    environment = "staging"
+    code_test = "storage_account_with_networks_rules" 
+    
+  }
+}
