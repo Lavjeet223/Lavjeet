@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout Code
@@ -27,6 +27,13 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    
+    - name: Write secrets to terraform.auto.tfvars
+      run: |
+        echo 'client_id = "${{ secrets.AZURE_CLIENT_ID }}"' > terraform.auto.tfvars
+        echo 'tenant_id = "${{ secrets.AZURE_TENANT_ID }}"' >> terraform.auto.tfvars
+        echo 'subscription_id = "${{ secrets.AZURE_SUBSCRIPTION_ID }}"' >> terraform.auto.tfvars
+      working-directory: ./gitpipeline
 
     - name: Terraform Init
       run: terraform init
@@ -37,5 +44,5 @@ jobs:
       working-directory: ./gitpipeline
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      run: terraform apply
       working-directory: ./gitpipeline
