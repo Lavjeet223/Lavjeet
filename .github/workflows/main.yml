@@ -1,0 +1,41 @@
+name: Deploy to Azure from GitPipeline Folder
+
+on:
+  push:
+    paths:
+      - 'gitpipeline/**'   # Trigger only if changes in this folder
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Azure Login via OIDC
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./gitpipeline
+
+    - name: Terraform Plan
+      run: terraform plan
+      working-directory: ./gitpipeline
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: ./gitpipeline
