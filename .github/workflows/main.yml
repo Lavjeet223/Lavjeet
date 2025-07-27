@@ -27,15 +27,22 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    
+    - name: Write secrets to terraform.auto.tfvars
+      run: |
+        echo 'client_id = "${{ secrets.AZURE_CLIENT_ID }}"' > terraform.auto.tfvars
+        echo 'tenant_id = "${{ secrets.AZURE_TENANT_ID }}"' >> terraform.auto.tfvars
+        echo 'subscription_id = "${{ secrets.AZURE_SUBSCRIPTION_ID }}"' >> terraform.auto.tfvars
+      working-directory: ./gitpipeline
 
     - name: Terraform Init
       run: terraform init
       working-directory: ./gitpipeline
 
     - name: Terraform Plan
-      run: terraform plan -var "client_id=${{ secrets.AZURE_CLIENT_ID }}"
+      run: terraform plan
       working-directory: ./gitpipeline
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -var "client_id=${{ secrets.AZURE_CLIENT_ID }}"
+      run: terraform apply
       working-directory: ./gitpipeline
