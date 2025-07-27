@@ -46,3 +46,10 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve
       working-directory: ./gitpipeline
+      env:
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform.log
+
+    - name: Show Terraform Output
+      run: cat terraform.log || echo "No log found"
+      working-directory: ./gitpipeline
