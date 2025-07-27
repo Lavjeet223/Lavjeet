@@ -13,6 +13,9 @@ resource "azurerm_virtual_network" "ram-vnet" {
 
 
 
+
+
+
 resource "azurerm_subnet" "lavjeet-subnet" {
   name                 = "ram-subnet"
   resource_group_name  = azurerm_resource_group.rg_block.name
