@@ -6,7 +6,7 @@ on:
 jobs:
   job1:
     name: 1st_job
-    runs-on: self-hosted
+    runs-on: ubuntu-latest #self-hosted
     steps:
       - name: task1
         run: echo Jay Ho Bholenath
@@ -15,7 +15,7 @@ jobs:
         run: echo Jai Bajrang Bali
   job2:
     name: job2
-    runs-on: Windows #self-hosted
+    runs-on: windows-latest #Windows #self-hosted
     steps:
       - name: Lavjeet
         run: echo "this is lavjeet kumar"
