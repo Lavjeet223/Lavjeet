@@ -13,3 +13,12 @@ jobs:
   
       - name: task2
         run: echo Jai Bajrang Bali
+  job2:
+    name: job2
+    runs-on: Windows #self-hosted
+    steps:
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+
+        
+  
