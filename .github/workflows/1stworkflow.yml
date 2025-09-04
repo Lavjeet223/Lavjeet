@@ -9,14 +9,123 @@ jobs:
     runs-on: ubuntu-latest #self-hosted
     steps:
       - name: task1
-        run: echo Jay Ho Bholenath
+        run: echo "Jay Ho Bholenath1"
   
       - name: task2
-        run: echo Jai Bajrang Bali
+        run: echo "Jai Bajrang Bali"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+      - name: task1
+        run: echo "Jay Ho Bholenath1"
+    
   job2:
     name: job2
     runs-on: windows-latest #Windows #self-hosted
     steps:
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
+      - name: Lavjeet
+        run: echo "this is lavjeet kumar"
       - name: Lavjeet
         run: echo "this is lavjeet kumar"
 
