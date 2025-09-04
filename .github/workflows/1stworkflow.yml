@@ -1,0 +1,14 @@
+name: 1stworkflow
+on:
+  push
+
+jobs:
+  1stjob
+  name: 1st job
+  runs-on: self-hosted
+  steps:
+    - name: task1
+      run: echo Jay Ho Bholenath
+
+    - name: task2
+      run: echo Jai Bajrang Bali
