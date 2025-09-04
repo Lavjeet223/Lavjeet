@@ -4,7 +4,7 @@ on:
   push
   
 jobs:
-  1stjob:
+  job1:
     name: 1st_job
     runs-on: self-hosted
     steps:
